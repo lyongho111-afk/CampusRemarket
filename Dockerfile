@@ -1,4 +1,3 @@
-dockerfile
 # Build the executable jar with the same Gradle and Java versions as the project.
 FROM gradle:9.3.0-jdk25 AS build
 WORKDIR /workspace
