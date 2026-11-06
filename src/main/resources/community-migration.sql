@@ -11,5 +11,5 @@ CREATE TABLE board_comments (
     content VARCHAR(1000) NOT NULL,
     regtime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_comment_post FOREIGN KEY(post_id) REFERENCES board_posts(post_id) ON DELETE CASCADE
-);
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 CREATE INDEX ix_comments_post_time ON board_comments(post_id, comment_id);
