@@ -73,10 +73,10 @@ CREATE TABLE IF NOT EXISTS sales (
     CONSTRAINT ck_sale_discount_amount CHECK (discount = 0 OR FLOOR(CAST(oprice AS DECIMAL(18,2)) * (100 - discount) / 100) >= 1)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX ix_sales_status_regtime ON sales(status, regtime);
-CREATE INDEX ix_sales_status_bumped ON sales(status, bumped_at);
-CREATE INDEX ix_sales_seller ON sales(seller);
-CREATE INDEX ix_sales_seller_member ON sales(seller_member_id);
+--CREATE INDEX ix_sales_status_regtime ON sales(status, regtime);
+--CREATE INDEX ix_sales_status_bumped ON sales(status, bumped_at);
+--CREATE INDEX ix_sales_seller ON sales(seller);
+--CREATE INDEX ix_sales_seller_member ON sales(seller_member_id);
 
 -- 4. board_categories 테이블
 CREATE TABLE IF NOT EXISTS board_categories (
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS board_posts (
     CONSTRAINT fk_post_category FOREIGN KEY(category_id) REFERENCES board_categories(category_id)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX ix_posts_category_time ON board_posts(category_id, regtime);
+--CREATE INDEX ix_posts_category_time ON board_posts(category_id, regtime);
 
 -- 6. board_comments 테이블
 CREATE TABLE IF NOT EXISTS board_comments (
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS board_comments (
     CONSTRAINT fk_comment_post FOREIGN KEY(post_id) REFERENCES board_posts(post_id) ON DELETE CASCADE
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX ix_comments_post_time ON board_comments(post_id, comment_id);
+--CREATE INDEX ix_comments_post_time ON board_comments(post_id, comment_id);
 
 -- 7. trade_orders 테이블
 CREATE TABLE IF NOT EXISTS trade_orders (
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS trade_orders (
 (latitude IS NOT NULL AND longitude IS NOT NULL AND latitude BETWEEN -90 AND 90 AND longitude BETWEEN -180 AND 180))
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX ix_orders_sale ON trade_orders(selno);
+--CREATE INDEX ix_orders_sale ON trade_orders(selno);
 
 -- 8. manner_ratings 테이블
 CREATE TABLE IF NOT EXISTS manner_ratings (
@@ -183,7 +183,7 @@ CREATE TABLE IF NOT EXISTS shop_change_logs (
     CONSTRAINT fk_shop_change_shop FOREIGN KEY(shop_id) REFERENCES shops(shopId)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX ix_shop_change_time ON shop_change_logs(shop_id, changed_at, change_id);
+--CREATE INDEX ix_shop_change_time ON shop_change_logs(shop_id, changed_at, change_id);
 
 -- 12. admin_action_logs 테이블
 CREATE TABLE IF NOT EXISTS admin_action_logs (
@@ -200,7 +200,7 @@ CREATE TABLE IF NOT EXISTS admin_action_logs (
     CONSTRAINT fk_admin_action_shop FOREIGN KEY(shop_id) REFERENCES shops(shopId)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX ix_admin_action_time ON admin_action_logs(created_at, action_id);
+--CREATE INDEX ix_admin_action_time ON admin_action_logs(created_at, action_id);
 
 -- 13. seller_notifications 테이블
 CREATE TABLE IF NOT EXISTS seller_notifications (
@@ -215,7 +215,7 @@ CREATE TABLE IF NOT EXISTS seller_notifications (
     CONSTRAINT fk_notification_order FOREIGN KEY(order_id) REFERENCES trade_orders(order_id)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX ix_notification_seller ON seller_notifications(seller_member_id, created_at);
+--CREATE INDEX ix_notification_seller ON seller_notifications(seller_member_id, created_at);
 
 -- 14. notification_deliveries 테이블
 CREATE TABLE IF NOT EXISTS notification_deliveries (
