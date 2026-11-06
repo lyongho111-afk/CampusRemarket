@@ -230,7 +230,7 @@ CREATE TABLE IF NOT EXISTS notification_deliveries (
     CONSTRAINT fk_delivery_notification FOREIGN KEY(notification_id) REFERENCES seller_notifications(notification_id)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX ix_notification_pending ON notification_deliveries(status);
+--CREATE INDEX ix_notification_pending ON notification_deliveries(status);
 
 -- 15. notification_settings 테이블
 CREATE TABLE IF NOT EXISTS notification_settings (
@@ -268,7 +268,7 @@ CREATE TABLE IF NOT EXISTS content_reactions (
     CONSTRAINT ck_reaction_kind CHECK(kind IN ('LIKE','BOOKMARK'))
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE INDEX ix_reaction_target ON content_reactions(target_type, target_id, kind);
+--CREATE INDEX ix_reaction_target ON content_reactions(target_type, target_id, kind);
 
 -- 18. engagement_targets 뷰
 CREATE OR REPLACE VIEW engagement_targets AS
