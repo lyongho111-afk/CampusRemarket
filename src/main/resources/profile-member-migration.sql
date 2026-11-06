@@ -4,7 +4,7 @@ ALTER TABLE student DROP CONSTRAINT IF EXISTS ck_student_temp;
 ALTER TABLE student ADD CONSTRAINT ck_student_temp CHECK(temp BETWEEN 0 AND 990);
 ALTER TABLE sales ADD COLUMN IF NOT EXISTS seller_member_id BIGINT;
 ALTER TABLE sales ADD CONSTRAINT IF NOT EXISTS fk_sale_seller_member FOREIGN KEY(seller_member_id) REFERENCES student(member_id);
-CREATE INDEX IF NOT EXISTS ix_sales_seller_member ON sales(seller_member_id);
+CREATE INDEX ix_sales_seller_member ON sales(seller_member_id);
 UPDATE sales SET seller_member_id=(SELECT st.member_id FROM student st WHERE st.unisno=sales.seller) WHERE seller_member_id IS NULL;
 CREATE OR REPLACE VIEW sale_listing AS
 SELECT s.selno,s.seller,s.seller_member_id,s.category,s.name,s.oprice,s.buyprice,s.wishprice,s.detail,s.discount,s.starttime,s.endtime,s.regtime,s.status,s.photo1,s.photo2,s.photo3,s.location,s.icon,s.bumped_at,

@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS content_reactions (
     CONSTRAINT ck_reaction_type CHECK(target_type IN ('SALE','POST','SHOP','COMMENT')),
     CONSTRAINT ck_reaction_kind CHECK(kind IN ('LIKE','BOOKMARK'))
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-CREATE INDEX IF NOT EXISTS ix_reaction_target ON content_reactions(target_type,target_id,kind);
+CREATE INDEX ix_reaction_target ON content_reactions(target_type,target_id,kind);
 CREATE OR REPLACE VIEW engagement_targets AS
  SELECT 'SALE' AS target_type,selno AS target_id,name AS title,location AS subtitle,current_price AS price,photo1 AS photo,selno AS parent_id FROM sale_listing
  UNION ALL SELECT 'POST',post_id,title,SUBSTRING(content,1,160),NULL,NULL,post_id FROM board_posts
